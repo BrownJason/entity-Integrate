@@ -1,9 +1,12 @@
 package com.cooksys.controller;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +16,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cooksys.dto.ProjectDto;
 import com.cooksys.dto.ProjectManagerDto;
+import com.cooksys.entity.ProjectManager;
 import com.cooksys.service.ProjectManagerService;
 
 import io.swagger.annotations.ApiOperation;
@@ -41,6 +47,12 @@ public class ProjectManagerController {
 	public void has(@PathVariable Long id, HttpServletResponse httpResponse) {
 		if(!projectManagerService.has(id))
 			httpResponse.setStatus(HttpServletResponse.SC_NOT_FOUND);
+	}
+	
+	@GetMapping("/projectManager/projects/{endDate}")
+	@ApiOperation(value = "", nickname = "getCountOfOverdueProjectsByManager")
+	public List<ProjectManagerDto> getProjectsOverdueByManager(@RequestParam(value="id", required=false) Long id, @RequestParam(value="date", required=false) @DateTimeFormat(pattern="yyyy-MM-dd") Date endDate) {
+		return projectManagerService.getAllOverdue(endDate);
 	}
 
 	@GetMapping("{id}")

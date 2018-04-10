@@ -22,6 +22,8 @@ public class ProjectManager implements BaseEntity<Long>{
 	
 	@OneToMany(mappedBy = "manager")
 	private Set<Project> projects;
+	
+	private Integer sizeOfProjects;
 
 	public Long getId() {
 		return id;
@@ -53,6 +55,14 @@ public class ProjectManager implements BaseEntity<Long>{
 
 	public void setProjects(Set<Project> projects) {
 		this.projects = projects;
+	}
+
+	public Integer getSizeOfProjects() {
+		return sizeOfProjects;
+	}
+
+	public void setSizeOfProjects(Integer sizeOfProjects) {
+		this.sizeOfProjects = sizeOfProjects;
 	}
 
 	@Override

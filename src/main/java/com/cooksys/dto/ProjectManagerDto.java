@@ -1,9 +1,11 @@
 package com.cooksys.dto;
 
+import java.util.Optional;
 import java.util.Set;
 
 import com.cooksys.dto.datatype.Reference;
 import com.cooksys.entity.Project;
+import com.cooksys.entity.ProjectManager;
 
 public class ProjectManagerDto {
 	
@@ -13,7 +15,9 @@ public class ProjectManagerDto {
 	
 	private String lastName;
 	
-	private Set<Reference<Project, Long>> projects;
+//	private Set<Reference<Project, Long>> projects;
+	
+	private Integer sizeOfProjects;
 
 	public Long getId() {
 		return id;
@@ -39,12 +43,20 @@ public class ProjectManagerDto {
 		this.lastName = lastName;
 	}
 
-	public Set<Reference<Project, Long>> getProjects() {
-		return projects;
+//	public Set<Reference<Project, Long>> getProjects() {
+//		return projects;
+//	}
+//
+//	public void setProjects(Set<Reference<Project, Long>> projects) {
+//		this.projects = projects;
+//	}
+	
+	public Integer getSizeOfProjects() {
+		return sizeOfProjects;
 	}
 
-	public void setProjects(Set<Reference<Project, Long>> projects) {
-		this.projects = projects;
+	public void setSizeOfProjects(Integer sizeOfProjects) {
+		this.sizeOfProjects = sizeOfProjects;
 	}
 
 	@Override
